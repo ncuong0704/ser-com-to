@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_video_sections",
+  "info": {
+    "displayName": "Video Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

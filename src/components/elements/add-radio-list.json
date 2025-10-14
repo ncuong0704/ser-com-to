@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_elements_add_radio_lists",
+  "info": {
+    "displayName": "Add Radio List"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.topping",
+      "required": true
+    }
+  }
+}

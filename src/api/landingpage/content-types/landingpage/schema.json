@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "landingpages",
+  "info": {
+    "singularName": "landingpage",
+    "pluralName": "landingpages",
+    "displayName": "Landingpage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.video-section",
+        "sections.menu-section",
+        "sections.hero"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

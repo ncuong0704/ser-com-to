@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "category_dishes",
+  "info": {
+    "singularName": "category-dish",
+    "pluralName": "category-dishes",
+    "displayName": "Category Dish",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "dishes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dish.dish",
+      "mappedBy": "category_dish"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

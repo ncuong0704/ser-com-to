@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_elements_toppings",
+  "info": {
+    "displayName": "Topping",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "integer",
+      "required": false
+    }
+  }
+}

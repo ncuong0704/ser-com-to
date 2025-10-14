@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "videos",
+  "info": {
+    "singularName": "video",
+    "pluralName": "videos",
+    "displayName": "Video"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "youtubeId": {
+      "type": "string",
+      "required": true
+    },
+    "category_video": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category-video.category-video",
+      "inversedBy": "videos"
+    }
+  }
+}
