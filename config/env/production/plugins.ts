@@ -1,22 +1,4 @@
 export default ({ env }) => ({
-    'users-permissions': {
-        config: {
-            jwtSecret: env('JWT_SECRET'),
-        },
-    },
-    seo: {
-        enabled: true,
-    },
-    'webp-converter': {
-        enabled: true,
-        config: {
-            // mimeTypes that converts to WebP. Default is ['image/png', 'image/jpeg', 'image/jpg']
-            mimeTypes: undefined,
-            options: {
-                // WebP options: https://sharp.pixelplumbing.com/api-output#webp
-            },
-        },
-    },
     upload: {
         config: {
             provider: 'cloudinary',
@@ -31,12 +13,14 @@ export default ({ env }) => ({
                     use_filename: true,
                     unique_filename: false,
                     overwrite: false,
+                    secure: true,
                 },
                 uploadStream: {
                     folder: 'strapi-uploads',
                     use_filename: true,
                     unique_filename: false,
                     overwrite: false,
+                    secure: true,
                 },
                 delete: {},
             },
