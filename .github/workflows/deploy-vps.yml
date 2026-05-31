@@ -1,0 +1,27 @@
+name: Deploy Strapi to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script_stop: true
+          script: |
+            set -e
+            cd /var/www/ser-com-to
+            git pull origin main
+            npm ci
+            NODE_ENV=production npm run build
+            pm2 restart strapi
+            pm2 save
+            echo "Strapi deploy done."
