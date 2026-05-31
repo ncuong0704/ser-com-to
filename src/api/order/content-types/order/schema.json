@@ -20,12 +20,28 @@
     "address": {
       "type": "string"
     },
+    "email": {
+      "type": "email"
+    },
+    "delivery_method": {
+      "type": "enumeration",
+      "enum": ["pickup", "delivery"],
+      "default": "delivery"
+    },
+    "branch_name": {
+      "type": "string"
+    },
     "content": {
       "type": "customField",
       "options": {
         "preset": "defaultHtml"
       },
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": ["cod", "bank_transfer"],
+      "default": "cod"
     }
   }
 }

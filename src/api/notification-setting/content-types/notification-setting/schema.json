@@ -1,0 +1,41 @@
+{
+  "kind": "singleType",
+  "collectionName": "notification_settings",
+  "info": {
+    "singularName": "notification-setting",
+    "pluralName": "notification-settings",
+    "displayName": "Notification Settings",
+    "description": "Cấu hình thông báo đơn hàng (email, điện thoại, ...)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "notification_email": {
+      "type": "email",
+      "required": true
+    },
+    "contact_phone": {
+      "type": "string",
+      "required": true
+    },
+    "contact_website_url": {
+      "type": "string"
+    },
+    "telegram_bot_token": {
+      "type": "string"
+    },
+    "telegram_chat_id": {
+      "type": "string"
+    },
+    "bank_qr_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "bank_transfer_info": {
+      "type": "text"
+    }
+  }
+}

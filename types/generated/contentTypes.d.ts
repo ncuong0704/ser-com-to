@@ -369,6 +369,38 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
+  collectionName: 'addresses';
+  info: {
+    description: 'Chi nh\u00e1nh c\u1eeda h\u00e0ng';
+    displayName: 'Address';
+    pluralName: 'addresses';
+    singularName: 'address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Text & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::address.address'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBadgeBadge extends Struct.CollectionTypeSchema {
   collectionName: 'badges';
   info: {
@@ -636,6 +668,36 @@ export interface ApiLandingpageLandingpage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiNotificationSettingNotificationSetting
+  extends Struct.SingleTypeSchema {
+  collectionName: 'notification_settings';
+  info: {
+    description: 'C\u1ea5u h\u00ecnh th\u00f4ng b\u00e1o \u0111\u01a1n h\u00e0ng (email, \u0111i\u1ec7n tho\u1ea1i, ...)';
+    displayName: 'Notification Settings';
+    pluralName: 'notification-settings';
+    singularName: 'notification-setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    bank_qr_image: Schema.Attribute.Media<'images'>;
+    bank_transfer_info: Schema.Attribute.Text;
+    contact_phone: Schema.Attribute.String & Schema.Attribute.Required;
+    contact_website_url: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    notification_email: Schema.Attribute.Email & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    telegram_bot_token: Schema.Attribute.String;
+    telegram_chat_id: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
   collectionName: 'orders';
   info: {
@@ -649,6 +711,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
   };
   attributes: {
     address: Schema.Attribute.String;
+    branch_name: Schema.Attribute.String;
     content: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -659,10 +722,15 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    delivery_method: Schema.Attribute.Enumeration<['pickup', 'delivery']> &
+      Schema.Attribute.DefaultTo<'delivery'>;
+    email: Schema.Attribute.Email;
     fullName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
+    payment_method: Schema.Attribute.Enumeration<['cod', 'bank_transfer']> &
+      Schema.Attribute.DefaultTo<'cod'>;
     publishedAt: Schema.Attribute.DateTime;
     telephone: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -1337,12 +1405,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::address.address': ApiAddressAddress;
       'api::badge.badge': ApiBadgeBadge;
       'api::category-dish.category-dish': ApiCategoryDishCategoryDish;
       'api::category-video.category-video': ApiCategoryVideoCategoryVideo;
       'api::dish.dish': ApiDishDish;
       'api::global.global': ApiGlobalGlobal;
       'api::landingpage.landingpage': ApiLandingpageLandingpage;
+      'api::notification-setting.notification-setting': ApiNotificationSettingNotificationSetting;
       'api::order.order': ApiOrderOrder;
       'api::video.video': ApiVideoVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
