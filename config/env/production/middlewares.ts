@@ -32,7 +32,11 @@ export default [
     config: {
       enabled: true,
       headers: '*',
-      origin: ['https://res.cloudinary.com'],
+      origin: [
+        'https://donburi.vn',
+        'https://www.donburi.vn',
+        'https://res.cloudinary.com',
+      ],
     },
   },
   'strapi::poweredBy',
